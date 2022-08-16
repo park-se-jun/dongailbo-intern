@@ -22,7 +22,7 @@ const ContriesSet = new Set([
 export default function Globe() {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera();
-  const light = new THREE.DirectionalLight(0xefefefe,1);
+  const light = new THREE.DirectionalLight(0xefefefe, 1);
   camera.position.set(0, 0, 800);
   camera.lookAt(scene.position);
   camera.add(light);
@@ -125,11 +125,6 @@ export default function Globe() {
     }
   }
 
-  const animate = () => {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-  };
   const resize = () => {
     const w = renderer.domElement.parentElement.clientWidth;
     const h = renderer.domElement.parentElement.clientHeight;
@@ -143,21 +138,41 @@ export default function Globe() {
   window.addEventListener("resize", resize, false);
   resize();
   /** */
-  
-  
-  
-  
-  
-  
-  animate();
 
+  var stop = false;
+  var frameCount = 0;
+  var fps, fpsInterval, startTime, now, then, elapsed;
 
+  startAnimating(5);
 
+  function startAnimating(fps) {
+    fpsInterval = 1000 / fps;
+    then = window.performance.now();
+    startTime = then;
+    console.log(startTime);
+    animate();
+  }
 
+  function animate(newtime){
+    if (stop) {
+      return;
+    }
+    requestAnimationFrame(animate);
+    now = newtime;
+    elapsed = now - then;
 
+    // if enough time has elapsed, draw the next frame
 
+    if (elapsed > fpsInterval) {
+      // Get ready for next frame by setting then=now, but...
+      // Also, adjust for fpsInterval not being multiple of 16.67
+      then = now - (elapsed % fpsInterval);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+  };
 
-/** */
+  /** */
   renderer.domElement.addEventListener("click", function (event) {
     var raycaster = new THREE.Raycaster();
 
@@ -181,40 +196,40 @@ export default function Globe() {
         mesh.worldToLocal(point);
         let perMillion = perMillionData[mesh.name].numberOfPeople;
         let date = perMillionData[mesh.name].date;
-        document.querySelector("#globe .balloon .text").innerHTML = mesh.name + '<br /><br />100만명 당 확진자:<br/> ' + perMillion + '명<br /><div style="font-size:x-small; color:#e5e5e5"><br/>' + date + "일 기준</div>";
+        document.querySelector("#globe .balloon .text").innerHTML =
+          mesh.name +
+          "<br /><br />100만명 당 확진자:<br/> " +
+          perMillion +
+          '명<br /><div style="font-size:x-small; color:#e5e5e5"><br/>' +
+          date +
+          "일 기준</div>";
 
         label.position.copy(point).normalize().multiplyScalar(1.005);
         mesh.add(label);
       }
     }
   });
-  this.addAll = () =>{
+  this.addAll = () => {};
+  this.removeAll = () => {};
+  this.disposeAll = (obj) => {};
+  //   gsap.registerPlugin(ScrollTrigger)
+  //   gsap.set(container,{autoAlpha:0});
+  //   ScrollTrigger.create({
+  //     trigger:document.querySelector(".Graph.제4번째"),
+  //     onEnter:()=>{
+  //         gsap.to(container,{autoAlpha:1});
+  //     },
+  //     onEnterBack:()=>{
+  //         gsap.to(container,{autoAlpha:1});
 
-  }
-  this.removeAll=()=>{
+  //     },
+  //     onLeave:()=>{
+  //         gsap.to(container,{autoAlpha:0});
 
-  }
-  this.disposeAll=(obj)=>{
+  //     },
+  //     onLeaveBack:()=>{
+  //         gsap.to(container,{autoAlpha:0});
 
-  };
-//   gsap.registerPlugin(ScrollTrigger)
-//   gsap.set(container,{autoAlpha:0});
-//   ScrollTrigger.create({
-//     trigger:document.querySelector(".Graph.제4번째"),
-//     onEnter:()=>{
-//         gsap.to(container,{autoAlpha:1});
-//     },
-//     onEnterBack:()=>{
-//         gsap.to(container,{autoAlpha:1});
-
-//     },
-//     onLeave:()=>{
-//         gsap.to(container,{autoAlpha:0});
-
-//     },
-//     onLeaveBack:()=>{
-//         gsap.to(container,{autoAlpha:0});
-
-//     },
-// })
+  //     },
+  // })
 }
