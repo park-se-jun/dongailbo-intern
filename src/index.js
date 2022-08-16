@@ -1,28 +1,27 @@
 import App from "./App";
 import "./style.css"
-import "./lib/env"
 import "./component/BaseMap"
 import "./component/BaseMap"
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { changePlaceTo, initMap } from "./component/BaseMap";
-// gsap.registerPlugin(ScrollTrigger);
-// // gsap.from(".textbox-1",{
-// //     scrollTrigger:{
-// //         trigger:".textbox-1",
-// //         start: "center center",
-// //         end:()=>"+=" + document.querySelector(".textbox-1").offsetWidth,
-// //         markers:true,
-// //         toggleActions: "play none reverse pause"
-// //     }
-// // ,duration:2,x:"-100vw"});
-// // gsap.set(".intro-image",{
-// //     scrollTrigger:{
-// //         trigger:".textbox-1",
-// //         start:"center center",
-// //         toggleActions: "play none reverse none"
-// //     },opacity:0
-// // });
+gsap.registerPlugin(ScrollTrigger);
+// gsap.from(".textbox-1",{
+//     scrollTrigger:{
+//         trigger:".textbox-1",
+//         start: "center center",
+//         end:()=>"+=" + document.querySelector(".textbox-1").offsetWidth,
+//         markers:true,
+//         toggleActions: "play none reverse pause"
+//     }
+// ,duration:2,x:"-100vw"});
+// gsap.set(".intro-image",{
+//     scrollTrigger:{
+//         trigger:".textbox-1",
+//         start:"center center",
+//         toggleActions: "play none reverse none"
+//     },opacity:0
+// });
 // const maps = gsap.utils.toArray(".Maps")
 // console.log(maps)
 // maps.forEach((map,i) => {

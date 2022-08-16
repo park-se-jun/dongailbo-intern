@@ -8,13 +8,13 @@ export default function App({ $target, textList }) {
   this.state = {};
   this.setState = (nextState) => {};
   const baseMap = new BaseMap();
-  const sections = [];
+  this.sections = [];
   const header = new Header($target, "intro");
   for (let i = 0; i < 4; i++) {
-    new Section($target, `Map 제${i}번째`, textList[i]);
+    this.sections.push(new Section($target, `Map 제${i}번째`, textList[i]));
   }
   for (let i = 4; i < 6; i++) {
-    new Section($target, `Graph 제${i}번째`, textList[i]);
+    this.sections.push(new Section($target, `Graph 제${i}번째`, textList[i]));
   }
   console.log("App실행");
 
@@ -37,7 +37,6 @@ export default function App({ $target, textList }) {
       start: "top center",
       toggleActions: "play none none reverse",
       markers: true,
-      // onEnter:changePlaceTo("우한")
     },
   });
   gsap.to(".intro-image", {
@@ -49,4 +48,18 @@ export default function App({ $target, textList }) {
       markers: true,
     },
   });
+  console.log(this.sections);
+  this.sections.forEach((element,i)=>{
+    if(i>4) return;
+    ScrollTrigger.create({
+        trigger:element.$element,
+        start:"top center",
+        onEnter:baseMap.setMarker(i),
+        onEnterBack:baseMap.setMarker(i),
+        onLeave:baseMap.removeMarker(i),
+        onLeaveBack:baseMap.removeMarker(i),
+
+    })
+  })
+
 }
