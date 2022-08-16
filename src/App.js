@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import BaseMap from "./component/BaseMap";
+import Globe from "./component/Globe";
 import Header from "./component/Header";
 import Section from "./component/Section";
 
@@ -16,7 +17,7 @@ export default function App({ $target, textList }) {
     this.sections.push(new Section($target, `Graph 제${i}번째`, textList[i]));
   }
   const baseMap = new BaseMap();
-
+  const globe = new Globe();
   console.log("App실행");
 
 
