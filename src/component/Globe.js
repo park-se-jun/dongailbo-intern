@@ -1,7 +1,11 @@
 import * as THREE from "three";
 import landData from "../../public/land.json";
+import perMillionData from "../../public/perMillion.json";
+
 import Map3DGeometry from "../lib/map3d";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 const ContriesSet = new Set([
   "대한민국",
   "미국",
@@ -35,7 +39,7 @@ export default function Globe() {
   container.appendChild(renderer.domElement);
   this.$element = renderer.domElement;
   controls = new OrbitControls(camera, this.$element);
-
+  controls.enableZoom = false;
   function Balloon(html) {
     THREE.Object3D.call(this);
     this.popup = document.createElement("div");
@@ -55,7 +59,6 @@ export default function Globe() {
       }.bind(this)
     );
   }
-
   Balloon.prototype = Object.create(THREE.Object3D.prototype);
   Balloon.prototype.constructor = Balloon;
 
@@ -101,10 +104,9 @@ export default function Globe() {
   const globe = new THREE.Object3D();
   globe.scale.set(250, 250, 250);
   scene.add(globe);
-
   let label = new Balloon(
-    '<div class="text">' +
-      '<br /><br /><div style="text-align: center; width: 100%";>나라를 눌러 정보를 확인하기</div>' +
+    '<div class="text" style="padding: 10px 0 10px 0;">' +
+      '<div style="text-align: center; width: 100%;">나라를 눌러 정보를 확인하기</div>' +
       "</div>" +
       '<div class="arrow"></div>'
   );
@@ -113,7 +115,6 @@ export default function Globe() {
 
   let geometry = new THREE.SphereGeometry(radius, 30, 15);
   globe.add(new THREE.Mesh(geometry, sea));
-
   for (const name in landData) {
     geometry = new Map3DGeometry(landData[name], 0);
     if (ContriesSet.has(name)) {
@@ -141,8 +142,22 @@ export default function Globe() {
 
   window.addEventListener("resize", resize, false);
   resize();
+  /** */
+  
+  
+  
+  
+  
+  
   animate();
 
+
+
+
+
+
+
+/** */
   renderer.domElement.addEventListener("click", function (event) {
     var raycaster = new THREE.Raycaster();
 
@@ -162,27 +177,44 @@ export default function Globe() {
     if (intersects && intersects[0]) {
       var mesh = intersects[0].object;
       if (mesh.name) {
-        var point = intersects[0].point;
+        let point = intersects[0].point;
         mesh.worldToLocal(point);
-
-        // var gdp = data[mesh.name].data.gdp, debt = 'n/a';
-        // if (gdp) {
-        // 	debt = data[mesh.name].data.debt;
-        // 	if (debt) {
-        // 		debt = '$' + Math.floor (gdp * debt / 100);
-        // 	} else {
-        // 		debt = 'n/a';
-        // 	}
-        // 	gdp = '$' + Math.floor (gdp) + ' (' + data[mesh.name].data.gdpYear + ')';
-        // } else {
-        // 	gdp = 'n/a'
-        // }
-
-        document.querySelector("#globe .balloon .text").innerHTML = mesh.name;
+        let perMillion = perMillionData[mesh.name].numberOfPeople;
+        let date = perMillionData[mesh.name].date;
+        document.querySelector("#globe .balloon .text").innerHTML = mesh.name + '<br /><br />100만명 당 확진자:<br/> ' + perMillion + '명<br /><div style="font-size:x-small; color:#e5e5e5"><br/>' + date + "일 기준</div>";
 
         label.position.copy(point).normalize().multiplyScalar(1.005);
         mesh.add(label);
       }
     }
   });
+  this.addAll = () =>{
+
+  }
+  this.removeAll=()=>{
+
+  }
+  this.disposeAll=(obj)=>{
+
+  };
+//   gsap.registerPlugin(ScrollTrigger)
+//   gsap.set(container,{autoAlpha:0});
+//   ScrollTrigger.create({
+//     trigger:document.querySelector(".Graph.제4번째"),
+//     onEnter:()=>{
+//         gsap.to(container,{autoAlpha:1});
+//     },
+//     onEnterBack:()=>{
+//         gsap.to(container,{autoAlpha:1});
+
+//     },
+//     onLeave:()=>{
+//         gsap.to(container,{autoAlpha:0});
+
+//     },
+//     onLeaveBack:()=>{
+//         gsap.to(container,{autoAlpha:0});
+
+//     },
+// })
 }

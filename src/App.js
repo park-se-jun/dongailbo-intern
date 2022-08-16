@@ -9,6 +9,8 @@ export default function App({ $target, textList }) {
   this.state = {};
   this.setState = (nextState) => {};
   this.sections = [];
+  const globe = new Globe($target);
+
   const header = new Header($target, "intro","코로나19 국내 발생 2년, 끝나지 않는 굴레");
   for (let i = 0; i < 4; i++) {
     this.sections.push(new Section($target, `Map 제${i}번째`, textList[i]));
@@ -17,7 +19,6 @@ export default function App({ $target, textList }) {
     this.sections.push(new Section($target, `Graph 제${i}번째`, textList[i]));
   }
   const baseMap = new BaseMap();
-  const globe = new Globe();
   console.log("App실행");
 
 
