@@ -26,6 +26,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.18.9",
     "@googlemaps/js-api-loader": "1.14.3",
+    "csv-loader": "3.0.5",
     "d3": "7.6.1",
     "file-loader": "6.2.0",
     "gsap": "3.10.4",

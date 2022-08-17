@@ -6,7 +6,8 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  /* position: fixed; */
+  position: fixed;
+  opacity: 0;
 }
 #globe > canvas {
   z-index: 1;
@@ -18,12 +19,18 @@ body {
   left: 0px;
   z-index: 2;
 }
-
+#chart{
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+}
 #globe .balloon {
   position: absolute;
   color: #ffffff;
   background-color: #000000;
-  border-radius: 4px;
+  opacity: 0.8;
+  border:0.1px double white;
+  border-radius: 1rem;
   font-family: sans-serif;
   line-height: 1;
   width: 200px;
@@ -77,6 +84,9 @@ section {
   display: inline-block;
   background-color: black;
   color: white;
+  border-radius: 1rem;
+  opacity: 0.6;
+
 }
 #base-map {
   position: fixed !important;

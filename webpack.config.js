@@ -23,17 +23,23 @@ module.exports = () => {
         {
           test: /\.css$/,
           use: ["style-loader", "css-loader"],
-        },{
-          test: /\.(png|jpg)$/,
-          use:['file-loader']
-        }
+        },
+        {
+          test: /\.(png|csv|jpg)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {},
+            },
+          ],
+        },
       ],
     },
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({ template: "./public/index.html" }),
       new DefinePlugin({
-        'process.env': JSON.stringify(dotenv.config().parsed),
+        "process.env": JSON.stringify(dotenv.config().parsed),
       }),
     ],
   };

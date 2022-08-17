@@ -33,7 +33,7 @@ export default function Globe() {
   targetLand = new THREE.MeshToonMaterial({ color: 0x06411b });
   sea = new THREE.MeshToonMaterial({ color: 0x049ef4 });
   radius = 0.995;
-  renderer.setClearColor(0xffffff);
+  renderer.setClearColor(0x000000);
 
   const container = document.getElementById("globe");
   container.appendChild(renderer.domElement);
@@ -153,7 +153,7 @@ export default function Globe() {
     animate();
   }
 
-  function animate(newtime){
+  function animate(newtime) {
     if (stop) {
       return;
     }
@@ -170,7 +170,7 @@ export default function Globe() {
       controls.update();
       renderer.render(scene, camera);
     }
-  };
+  }
 
   /** */
   renderer.domElement.addEventListener("click", function (event) {
@@ -209,27 +209,4 @@ export default function Globe() {
       }
     }
   });
-  this.addAll = () => {};
-  this.removeAll = () => {};
-  this.disposeAll = (obj) => {};
-  //   gsap.registerPlugin(ScrollTrigger)
-  //   gsap.set(container,{autoAlpha:0});
-  //   ScrollTrigger.create({
-  //     trigger:document.querySelector(".Graph.제4번째"),
-  //     onEnter:()=>{
-  //         gsap.to(container,{autoAlpha:1});
-  //     },
-  //     onEnterBack:()=>{
-  //         gsap.to(container,{autoAlpha:1});
-
-  //     },
-  //     onLeave:()=>{
-  //         gsap.to(container,{autoAlpha:0});
-
-  //     },
-  //     onLeaveBack:()=>{
-  //         gsap.to(container,{autoAlpha:0});
-
-  //     },
-  // })
 }

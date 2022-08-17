@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import BaseMap from "./component/BaseMap";
+import Chart from "./component/chart";
 import Globe from "./component/Globe";
 import Header from "./component/Header";
 import Section from "./component/Section";
@@ -9,8 +10,6 @@ export default function App({ $target, textList }) {
   this.state = {};
   this.setState = (nextState) => {};
   this.sections = [];
-  const globe = new Globe($target);
-
   const header = new Header($target, "intro","코로나19 국내 발생 2년, 끝나지 않는 굴레");
   for (let i = 0; i < 4; i++) {
     this.sections.push(new Section($target, `Map 제${i}번째`, textList[i]));
@@ -19,6 +18,8 @@ export default function App({ $target, textList }) {
     this.sections.push(new Section($target, `Graph 제${i}번째`, textList[i]));
   }
   const baseMap = new BaseMap();
+  const globe = new Globe();
+  const chart = new Chart();
   console.log("App실행");
 
 
@@ -37,6 +38,16 @@ export default function App({ $target, textList }) {
     //   markers: true,
     },
   });
+  gsap.to("#globe",{
+    autoAlpha: 1,
+    scrollTrigger:{
+      trigger:".Graph.제4번째",
+      start:"top center",
+      end:"bottom center",
+      toggleActions: "play reverse play reverse",
+      markers:true
+    }
+  })
 //   console.log(this.sections);
 
 }
