@@ -2,8 +2,8 @@
   "name": "dongailbo",
   "version": "1.0.0",
   "engines": {
-    "node":"16.15.1",
-    "yarn":"1.22.10"
+    "node": "16.15.1",
+    "yarn": "1.22.10"
   },
   "description": "동아일보 실무 과제",
   "main": "index.js",
@@ -11,7 +11,9 @@
   "author": "park-se-jun",
   "license": "MIT",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "start":"node server.js",
+    "heroku-postbuild": "webpack -p"
   },
   "devDependencies": {
     "@babel/cli": "7.18.10",
@@ -32,6 +34,7 @@
     "@googlemaps/js-api-loader": "1.14.3",
     "csv-loader": "3.0.5",
     "d3": "7.6.1",
+    "express": "4.18.1",
     "file-loader": "6.2.0",
     "gsap": "3.10.4",
     "mapbox": "1.0.0-beta10",
