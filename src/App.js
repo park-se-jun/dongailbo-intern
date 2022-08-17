@@ -2,7 +2,7 @@ import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import BaseMap from "./component/BaseMap";
-import Chart from "./component/chart";
+import Chart from "./component/Chart";
 import Globe from "./component/Globe";
 import Header from "./component/Header";
 import Section from "./component/Section";
