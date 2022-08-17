@@ -13,7 +13,7 @@
   "scripts": {
     "build": "webpack",
     "start":"node server.js",
-    "heroku-postbuild": "webpack -p"
+    // "heroku-postbuild": "webpack -p"
   },
   "devDependencies": {
     "@babel/cli": "7.18.10",
