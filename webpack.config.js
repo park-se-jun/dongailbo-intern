@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { DefinePlugin } = require("webpack");
 module.exports = () => {
+  dotenv.config();
   return {
     mode: "development",
     entry: {
@@ -39,7 +40,7 @@ module.exports = () => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({ template: "./public/index.html" }),
       new DefinePlugin({
-        "process.env": JSON.stringify(dotenv.config().parsed),
+        "process.env.GOOGLE_MAP_API": JSON.stringify(process.env.GOOGLE_MAP_API),
       }),
     ],
   };
