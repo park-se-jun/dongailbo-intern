@@ -8,7 +8,6 @@ export default function Section($target,$className,$text){
     $target.appendChild(this.$element);
 
     this.render = () =>{
-        console.log($className + "생성")
         this.TextBox = new TextBox(this.$element,`text-box`,$text)
     }
     this.render();

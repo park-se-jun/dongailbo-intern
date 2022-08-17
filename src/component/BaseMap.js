@@ -22,15 +22,15 @@ export default function BaseMap() {
     disableDefaultUI: true,
   };
   this.mapGsapInit = () => {
-    console.log("map 애니메이션");
+
     gsap.registerPlugin(ScrollTrigger);
     this.sections = gsap.utils.toArray(".section");
-    console.log(this.sections);
+
     gsap.set(this.$element, {
       autoAlpha: 0,
     });
     this.sections.forEach(($element, i) => {
-      console.log(`${i}번째 맵`);
+
       if (i < 4) {
         ScrollTrigger.create({
           trigger: $element,
@@ -74,18 +74,12 @@ export default function BaseMap() {
   };
 
   this.render = () => {
-    console.log("맵 랜더링");
     this.loader
       .load()
       .then((google) => {
         this.myMap = new google.maps.Map(this.$element, this.mapOption);
-        console.log(this.myMap);
         this.myGoogle = google;
-
-        console.log(this.myGoogle);
         this.makeMarker();
-        console.log("마커 생성중");
-        console.log(this.markers);
         // this.mapGsapInit();
 
         // makeMarkers();
@@ -94,7 +88,6 @@ export default function BaseMap() {
       })
       .catch((e) => {});
   };
-  console.log(this.places);
 
   this.makeMarker = () => {
     for (const element of this.places) {
@@ -113,7 +106,6 @@ export default function BaseMap() {
     });
   };
   this.setMarker = (index) => {
-    console.log("setMarker 진입");
     this.markers[index].setMap(this.myMap);
   };
   this.removeMarker = (index) => {

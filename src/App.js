@@ -19,7 +19,7 @@ export default function App({ $target,textList,title}) {
   const baseMap = new BaseMap();
   const globe = new Globe();
   const chart = new Chart();
-  console.log("App실행");
+
 
 
   /** 애니메이션 처리 부 */
@@ -55,9 +55,9 @@ export default function App({ $target,textList,title}) {
       start:"top center",
       end:"bottom center",
       toggleActions: "play reverse play reverse",
-      markers:true
+
     }
   })
-  console.log(this.sections);
+
 
 }

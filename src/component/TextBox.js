@@ -25,7 +25,6 @@ export default function TextBox($target, $className, $text) {
       end:`center 100vh`,
       toggleActions:"play reverse play reverse",
       pin:true,
-      // markers:true
     }
   })
   

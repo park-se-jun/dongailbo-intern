@@ -26,6 +26,6 @@ const textList = [
 ]
 new App({$target:document.querySelector('.App'),textList,title})
 // const $app = document.querySelector("#root");
-console.log("안녕하세요")
+
 // initMap();
 // const render =  

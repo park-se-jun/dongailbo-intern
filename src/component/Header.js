@@ -5,7 +5,6 @@ export default function Header($target,$className,title){
     document.querySelector("title").innerHTML = title;
     $target.appendChild(this.$element);
     this.render = () =>{
-        console.log("헤더생성")
         const introBg = document.createElement('img');
         introBg.src=introImage;
         introBg.className = "intro-image";

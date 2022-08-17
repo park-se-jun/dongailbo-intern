@@ -2,7 +2,6 @@ import * as d3 from "d3";
 import csvPath from "../../public/covid-19.csv";
 
 export default async function Chart(widthParam=960,heightParam=parseInt(widthParam/960*500)) {
-  console.log("chart 생성중");
   this.$element = document.querySelector("#chart");
   // append the svg object to the body of the page
   let svg = d3
@@ -33,7 +32,6 @@ export default async function Chart(widthParam=960,heightParam=parseInt(widthPar
       return y(d.total);
     });
   const data = await d3.csv(csvPath);
-  console.log(data);
   for (const element of data) {
     element.date = parseTime(element.date);
     element.total = parseInt(element.total.replace(",", ""));
