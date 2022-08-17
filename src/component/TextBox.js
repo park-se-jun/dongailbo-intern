@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import Draggable from "gsap/Draggable";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function TextBox($target, $className, $text) {
@@ -13,7 +14,8 @@ export default function TextBox($target, $className, $text) {
         </p>
         `;
   };
-  gsap.set(this.$element,{autoAlpha:0});
+  // gsap.set(this.$element,{autoAlpha:0})
+  gsap.set(this.$element,{autoAlpha:0,x:400,y:200});
   gsap.registerPlugin(ScrollTrigger);
   gsap.to(this.$element,{
     autoAlpha:1,
@@ -26,5 +28,6 @@ export default function TextBox($target, $className, $text) {
       // markers:true
     }
   })
+  
   this.render();
 }

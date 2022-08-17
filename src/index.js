@@ -6,64 +6,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { changePlaceTo, initMap } from "./component/BaseMap";
 gsap.registerPlugin(ScrollTrigger);
-// gsap.from(".textbox-1",{
-//     scrollTrigger:{
-//         trigger:".textbox-1",
-//         start: "center center",
-//         end:()=>"+=" + document.querySelector(".textbox-1").offsetWidth,
-//         markers:true,
-//         toggleActions: "play none reverse pause"
-//     }
-// ,duration:2,x:"-100vw"});
-// gsap.set(".intro-image",{
-//     scrollTrigger:{
-//         trigger:".textbox-1",
-//         start:"center center",
-//         toggleActions: "play none reverse none"
-//     },opacity:0
-// });
-// const maps = gsap.utils.toArray(".Maps")
-// console.log(maps)
-// maps.forEach((map,i) => {
-//     ScrollTrigger.create({
-//         trigger:map,
-//         start:"top center",
-//         pin: true,
-//         // toggleActions: "play none none reverse",
-//         markers:true,
-//         onEnter:changePlaceTo(city[i])
-//     })
-// });
-// gsap.set("#base-map",{
-//     autoAlpha:0
-// })
-// gsap.set(".intro-image",{
-//     autoAlpha:1
-// })
-// gsap.set(".textbox",{autoAlpha:0})
-
-// gsap.to("[class*='Map']",{})
-
-// gsap.to("#base-map",{
-//     autoAlpha:1,
-//     scrollTrigger:{
-//         trigger:".Map.우한",
-//         start:"top center" ,
-//         toggleActions: "play none none reverse",
-//         markers:true,
-//         // onEnter:changePlaceTo("우한")
-//     } 
-// })
-// gsap.to(".intro-image",{
-//     autoAlpha:0,
-//     scrollTrigger:{
-//         trigger:".Map.우한",
-//         start:"top center" ,
-//         toggleActions: "play none none reverse",
-//         markers:true,
-//     } 
-// })
-
+const title = "코로나19 국내 발생 2년, 끝나지 않는 굴레"
 const textList = [
     `2020년 1월 18일
 
@@ -81,7 +24,7 @@ const textList = [
     `국내도 오미크론 영향권에 들면서 한동안 진정세를 보이던 확진자가 증가세로 돌아섰다. 2월 4일 0시 기준 일일 신규 확진자는 2만7443명이다. 이날까지 누적 확진자는 93만4656명이다. `
 
 ]
-new App({$target:document.querySelector('.App'),textList})
+new App({$target:document.querySelector('.App'),textList,title})
 // const $app = document.querySelector("#root");
 console.log("안녕하세요")
 // initMap();

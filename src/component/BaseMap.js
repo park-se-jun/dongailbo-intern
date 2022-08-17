@@ -24,70 +24,52 @@ export default function BaseMap() {
   this.mapGsapInit = () => {
     console.log("map 애니메이션");
     gsap.registerPlugin(ScrollTrigger);
-    this.sections = gsap.utils.toArray(".Map");
+    this.sections = gsap.utils.toArray(".section");
     console.log(this.sections);
     gsap.set(this.$element, {
       autoAlpha: 0,
     });
-    // gsap.to(this.$element, {
-    //   autoAlpha: 1,
-    //   scrollTrigger: {
-    //     trigger: ".Map",
-    //     start: "top 40%",
-    //     toggleActions: "play none none reverse",
-    //     // markers: true,
-    //   },
-    // });
-    // gsap.to(this.$element,{
-    //   autoAlpha:0,
-    //   duration:10,
-    //   scrollTrigger:{
-    //     trigger:".Graph",
-    //     toggleActions:"play reverse play reverse",
-    //     // markers:true
-    //   }
-    // })
     this.sections.forEach(($element, i) => {
       console.log(`${i}번째 맵`);
-
-      ScrollTrigger.create({
-        trigger: $element,
-        start: "top center",
-        end: `bottom center`,
-        onEnter: () => {
-          if (i == 0) {
-            gsap.to(this.$element, { autoAlpha: 1 });
-          }
-          this.moveMarker(i);
-          this.setMarker(i);
-        },
-        onEnterBack: () => {
-          this.moveMarker(i);
-          this.setMarker(i);
-        },
-        onLeave: () => {
-          this.removeMarker(i);
-        },
-        onLeaveBack: () => {
-          if (i == 0) {
+      if (i < 4) {
+        ScrollTrigger.create({
+          trigger: $element,
+          start: "top center",
+          end: `bottom center`,
+          onEnter: () => {
+            if (i == 0) {
+              gsap.to(this.$element, { autoAlpha: 1 });
+            }
+            this.moveMarker(i);
+            this.setMarker(i);
+          },
+          onEnterBack: () => {
+            this.moveMarker(i);
+            this.setMarker(i);
+          },
+          onLeave: () => {
+            this.removeMarker(i);
+          },
+          onLeaveBack: () => {
+            if (i == 0) {
+              gsap.to(this.$element, { autoAlpha: 0 });
+            }
+            this.removeMarker(i);
+          },
+        });
+      } else if(i==4){
+        ScrollTrigger.create({
+          trigger: $element,
+          start: "top center",
+          end: `bottom center`,
+          onEnter: () => {
             gsap.to(this.$element, { autoAlpha: 0 });
-          }
-          this.removeMarker(i);
-        },
-      });
-    });
-    gsap.utils.toArray(".Graph").forEach(($element, i) => {
-      ScrollTrigger.create({
-        trigger: $element,
-        start: "top center",
-        end: `bottom center`,
-        onEnter:()=>{
-          gsap.to(this.$element,{autoAlpha:0})
-        },
-        onLeaveBack:()=>{
-          gsap.to(this.$element,{autoAlpha:1});
-        }
-      });
+          },
+          onLeaveBack: () => {
+            gsap.to(this.$element, { autoAlpha: 1 });
+          },
+        });
+      }
     });
   };
 
@@ -104,7 +86,7 @@ export default function BaseMap() {
         this.makeMarker();
         console.log("마커 생성중");
         console.log(this.markers);
-        this.mapGsapInit();
+        // this.mapGsapInit();
 
         // makeMarkers();
         // currentMarker=markersMap.get("우한")
